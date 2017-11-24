@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bus.chelaile.dao.AMeetingBookMapper" >
+    
+    
+    <!-- 当天所有state为1的 -->
+    <select id="listValidReservation" resultType="com.bus.chelaile.model.MeetingInfo">
+        SELECT id,date,room_name,room_id,time_index,user FROM a_meetingbook
+        WHERE 
+          date=#{date}
+        AND
+          state=1
+    </select>
+    
+    <!-- 当天所有的 -->
+    <select id="listAllReservation" resultType="com.bus.chelaile.model.MeetingInfo">
+        SELECT id,date,room_name,room_id,time_index,user,state FROM a_meetingbook
+        WHERE 
+          date=#{date}
+    </select>
+
+	<!-- 增加 -->
+	<insert id="addReservation" parameterType="com.bus.chelaile.model.MeetingInfo" useGeneratedKeys="true">
+		insert into a_meetingbook(date,room_id,time_index,state,user)
+		values(#{date},#{room_id},#{time_index},#{state},#{user})
+	</insert>
+	
+	<!-- 更新 -->
+	<update id="updateReservation" parameterType="com.bus.chelaile.model.MeetingInfo">
+		update a_meetingbook set state=#{state},user=#{user}  
+		where date=#{date} 
+		and room_id=#{room_id} 
+		and time_index=#{time_index} 
+	</update>
+       
+</mapper>

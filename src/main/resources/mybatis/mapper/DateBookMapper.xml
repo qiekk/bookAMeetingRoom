@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bus.chelaile.dao.DateBookMapper" >
+    
+    
+    <!-- 当天所有state为1的 -->
+    <select id="listValidDates" resultType="dateInfo">
+        SELECT  the_date as date, the_day as day FROM t_date
+        WHERE 
+          the_date between #{date_before}
+        AND
+           #{date_after}
+    </select>
+    
+       
+</mapper>
