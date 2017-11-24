@@ -10,4 +10,4 @@ spring-mybatis.xml
 .settings
 .svn
 target
-*..properties
+*.properties
